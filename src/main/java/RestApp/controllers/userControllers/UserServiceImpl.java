@@ -15,17 +15,13 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     public boolean createUser(User user) {
-        // запись в БД
         if (user == null) { return false; }
         userRepository.save(user);
         return true;
     }
 
     @Override
-    public List<User> allUsers() {
-        // возврат из БД
-        return userRepository.findAll();
-    }
+    public List<User> allUsers() { return userRepository.findAll(); }
 
     @Override
     public User getUserByID(int id) {
@@ -33,12 +29,16 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public boolean updateUserByID(User user, int id) {
-        return false;
+    public boolean updateUser(int id, User user) {
+        userRepository.deleteById(id);
+        user.setId(id);
+        userRepository.save(user);
+        return true;
     }
 
     @Override
     public boolean deleteUserByID(int id) {
-        return false;
+        userRepository.deleteById(id);
+        return true;
     }
 }

@@ -26,11 +26,11 @@ public interface UserServiceInterface {
 
     /**
      * Обновление данных пользователя по ID
+     * @param id - id юзера
      * @param user - объект юзера
-     * @param id - ID юзера
      * @return - true/false
      */
-    boolean updateUserByID(User user, int id);
+    boolean updateUser(int id, User user);
 
     /**
      * Удаление юзера по ID

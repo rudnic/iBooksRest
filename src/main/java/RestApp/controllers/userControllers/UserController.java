@@ -20,8 +20,9 @@ public class UserController {
 
     /**
      * Получить пользователя по его ID GET-запросом
-     * URI: /user/{id}
-     * id - ID юзера
+     * URI: /users/{id}
+     * Method: GET
+     * @param id - id юзера
      */
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getUserByID(@PathVariable(name = "id") int id) {
@@ -33,6 +34,8 @@ public class UserController {
 
     /**
      * Получить список всех юзеров
+     * URI: /users/
+     * Method: GET
      */
     @GetMapping(value = "/")
     public List<User> getAllUsers() {
@@ -41,10 +44,35 @@ public class UserController {
 
     /**
      * Создать нового юзера
+     * URI: /users/
+     * Method: POST
      * @param user - объект юзера
      */
     @PostMapping("/")
     public void addUser(@RequestBody User user) {
         userServiceInterface.createUser(user);
+    }
+
+    /**
+     * Удалить юзера по его ID
+     * URI: /users/{id}
+     * Method: DELETE
+     * @param id - id юзера
+     */
+    @DeleteMapping(value = "/{id}/")
+    public boolean deleteUser(@PathVariable(name = "id") int id) {
+        return userServiceInterface.deleteUserByID(id);
+    }
+
+    /**
+     * Обновить информацию о юзере
+     * URI: /users/
+     * Method: PUT
+     * @param id - id юзера
+     * @param user - юзер с новыми полями
+     */
+    @PutMapping(value = "/{id}")
+    public boolean updateUser(@RequestBody User user, @PathVariable(name = "id") int id) {
+        return userServiceInterface.updateUser(id, user);
     }
 }
