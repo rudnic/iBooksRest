@@ -5,10 +5,7 @@ import RestApp.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -24,12 +21,17 @@ public class AuthorController {
     }
 
     @GetMapping(value = "/")
-    public List<Author> getALlAuthors() {
-        return authorServiceInterface.getAllAuthors();
+    public ResponseEntity<?> getALlAuthors() {
+        return new ResponseEntity<>(authorServiceInterface.getAllAuthors(), HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/")
+    public ResponseEntity<?> createAuthor(@RequestBody Author author) {
+        return new ResponseEntity<>(authorServiceInterface.createAuthor(author), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/")
-    public ResponseEntity<Author> getAuthorByID(@PathVariable(name = "id") int id) {
+    public ResponseEntity<?> getAuthorByID(@PathVariable(name = "id") int id) {
         final Author author = authorServiceInterface.getAuthorById(id);
         return author != null
                 ? new ResponseEntity<>(author, HttpStatus.OK)
@@ -39,5 +41,10 @@ public class AuthorController {
     @GetMapping("/{id}/books/")
     public Set<Book> getAuthorsBooks(@PathVariable(name = "id") int id) {
         return authorServiceInterface.getAuthorsBooks(id);
+    }
+
+    @DeleteMapping(value = "/{id}/")
+    public boolean deleteAuthorById(@PathVariable(name = "id") int id) {
+        return authorServiceInterface.deleteAuthorById(id);
     }
 }
