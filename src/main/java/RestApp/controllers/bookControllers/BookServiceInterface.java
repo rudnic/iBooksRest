@@ -3,10 +3,11 @@ package RestApp.controllers.bookControllers;
 import RestApp.models.Book;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BookServiceInterface {
 
-    boolean createBook(Book book);
+    boolean createBook(Book book, List<Integer> authorsId);
 
     List<Book> getAllBooks();
 

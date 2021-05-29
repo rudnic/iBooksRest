@@ -9,5 +9,3 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 }
-
-// TODO: необходимо придумать способ связывания книг и авторов (idea: Передавать в RequestBody Map<Author, Book>
