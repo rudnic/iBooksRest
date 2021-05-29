@@ -40,12 +40,8 @@ public class AuthorServiceImpls implements AuthorServiceInterface {
     }
 
     @Override
-    public boolean updateAuthorById(int id) {
-        return false;
-    }
-
-    @Override
     public boolean deleteAuthorById(int id) {
-        return false;
+        authorRepository.deleteById(id);
+        return true;
     }
 }

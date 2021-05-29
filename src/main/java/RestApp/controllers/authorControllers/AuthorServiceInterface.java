@@ -16,7 +16,5 @@ public interface AuthorServiceInterface {
 
     Author getAuthorById(int id);
 
-    boolean updateAuthorById(int id);
-
     boolean deleteAuthorById(int id);
 }
