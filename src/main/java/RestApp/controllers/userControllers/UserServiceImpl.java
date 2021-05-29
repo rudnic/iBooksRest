@@ -30,9 +30,10 @@ public class UserServiceImpl implements UserServiceInterface {
 
     @Override
     public boolean updateUser(int id, User user) {
-        userRepository.deleteById(id);
-        user.setId(id);
-        userRepository.save(user);
+        User userS = userRepository.findById(id).get();
+        userS.setPassword(user.getPassword());
+        userS.setEmail(user.getEmail());
+        userRepository.save(userS);
         return true;
     }
 
@@ -41,4 +42,5 @@ public class UserServiceImpl implements UserServiceInterface {
         userRepository.deleteById(id);
         return true;
     }
+
 }

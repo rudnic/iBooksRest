@@ -71,7 +71,7 @@ public class UserController {
      * @param id - id юзера
      * @param user - юзер с новыми полями
      */
-    @PutMapping(value = "/{id}")
+    @PutMapping(value = "/{id}/")
     public boolean updateUser(@RequestBody User user, @PathVariable(name = "id") int id) {
         return userServiceInterface.updateUser(id, user);
     }

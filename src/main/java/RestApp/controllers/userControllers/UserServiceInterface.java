@@ -38,4 +38,5 @@ public interface UserServiceInterface {
      * @return tru/false
      */
     boolean deleteUserByID(int id);
+
 }
