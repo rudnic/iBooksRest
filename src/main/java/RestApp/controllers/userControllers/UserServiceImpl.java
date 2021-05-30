@@ -29,11 +29,11 @@ public class UserServiceImpl implements UserServiceInterface {
     }
 
     @Override
-    public boolean updateUser(int id, User user) {
-        User userS = userRepository.findById(id).get();
-        userS.setPassword(user.getPassword());
-        userS.setEmail(user.getEmail());
-        userRepository.save(userS);
+    public boolean updateUser(int id, User userDTO) {
+        User user = userRepository.findById(id).get();
+        userDTO.setId(id);
+        user = userDTO;
+        userRepository.save(user);
         return true;
     }
 

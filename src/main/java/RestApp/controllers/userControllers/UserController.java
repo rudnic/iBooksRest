@@ -75,4 +75,5 @@ public class UserController {
     public boolean updateUser(@RequestBody User user, @PathVariable(name = "id") int id) {
         return userServiceInterface.updateUser(id, user);
     }
+
 }
