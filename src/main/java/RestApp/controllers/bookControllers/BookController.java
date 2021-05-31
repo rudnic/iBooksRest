@@ -1,8 +1,11 @@
 package RestApp.controllers.bookControllers;
 
 import RestApp.models.Book;
+import RestApp.models.BookComment;
 import RestApp.models.BookWithListAuthorsIdDTO;
+import com.fasterxml.jackson.databind.ser.std.RawSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.reactive.ReactiveSortingRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -42,6 +45,16 @@ public class BookController {
         book.setAverageRating(bwlaiDTO.getAverageRating());
         bookServiceInterface.createBook(book, bwlaiDTO.getAuthorsId());
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{id}/comments/")
+    public ResponseEntity<?> addComment(@PathVariable(name = "id") int id, @RequestBody BookComment bookComment) {
+        return new ResponseEntity<>(bookServiceInterface.addComment(id, bookComment), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}/comments/")
+    public ResponseEntity<?> showComments(@PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(bookServiceInterface.showComments(id), HttpStatus.OK);
     }
 
 }

@@ -1,8 +1,10 @@
 package RestApp.controllers.bookControllers;
 
 import RestApp.controllers.authorControllers.AuthorRepository;
+import RestApp.controllers.commentsController.CommentsRepository;
 import RestApp.models.Author;
 import RestApp.models.Book;
+import RestApp.models.BookComment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ public class BookServiceImpl implements BookServiceInterface {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private CommentsRepository commentsRepository;
+
 
     @Override
     public boolean createBook(Book book, List<Integer> authorsId) {
@@ -53,5 +58,22 @@ public class BookServiceImpl implements BookServiceInterface {
     @Override
     public boolean deleteBookById(int id) {
         return false;
+    }
+
+    @Override
+    public boolean addComment(int id, BookComment bookComment) {
+        bookComment.setBook(bookRepository.findById(id).get());
+        commentsRepository.save(bookComment);
+        Book book = bookRepository.findById(id).get();
+        Set<BookComment> comments = book.getBookComments();
+        comments.add(bookComment);
+        book.setBookComments(comments);
+        bookRepository.save(book);
+        return true;
+    }
+
+    @Override
+    public Set<BookComment> showComments(int id) {
+        return bookRepository.findById(id).get().getBookComments();
     }
 }

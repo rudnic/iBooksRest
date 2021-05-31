@@ -1,7 +1,6 @@
 package RestApp.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -29,10 +28,16 @@ public class Book {
     @Column(name = "average_rating")
     private String averageRating;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "books")
+    @Column(name = "count_likes")
+    private final Integer countLikes = 0;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
     @JsonIgnoreProperties(value = { "authors" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
     @JsonBackReference
     private Set<Author> authors;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+    private Set<BookComment> bookComments;
 
     public Book() {
     }
@@ -83,5 +88,13 @@ public class Book {
 
     public void setAverageRating(String averageRating) {
         this.averageRating = averageRating;
+    }
+
+    public Set<BookComment> getBookComments() {
+        return bookComments;
+    }
+
+    public void setBookComments(Set<BookComment> bookComments) {
+        this.bookComments = bookComments;
     }
 }

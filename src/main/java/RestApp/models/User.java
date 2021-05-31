@@ -21,6 +21,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserGender gender;
 
+    @OneToOne
+    private BookComment bookComment;
+
     public User() {
     }
 
