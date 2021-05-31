@@ -1,7 +1,11 @@
 package RestApp.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Calendar;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS")
@@ -21,8 +25,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserGender gender;
 
-    @OneToOne
-    private BookComment bookComment;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @JsonBackReference
+    private List<BookComment> bookComment;
 
     public User() {
     }
@@ -97,5 +102,13 @@ public class User {
 
     public void setGender(UserGender gender) {
         this.gender = gender;
+    }
+
+    public List<BookComment> getBookComment() {
+        return bookComment;
+    }
+
+    public void setBookComment(List<BookComment> bookComment) {
+        this.bookComment = bookComment;
     }
 }

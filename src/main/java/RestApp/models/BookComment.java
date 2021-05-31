@@ -22,10 +22,9 @@ public class BookComment {
 
     private String commentText;
 
-    // TODO: сделать связь с User
-    // @OneToOne
-    // @JoinColumn(name = "userId")
-    // private User user;
+     @ManyToOne
+     @JoinColumn(name = "userId")
+     private User user;
 
 
     public int getId() {
@@ -50,5 +49,13 @@ public class BookComment {
 
     public void setCommentText(String commentText) {
         this.commentText = commentText;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
