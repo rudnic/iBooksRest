@@ -1,6 +1,7 @@
 package RestApp.controllers.userControllers;
 
 import RestApp.models.User;
+import com.fasterxml.jackson.databind.ser.std.RawSerializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,8 +50,8 @@ public class UserController {
      * @param user - объект юзера
      */
     @PostMapping("/")
-    public void addUser(@RequestBody User user) {
-        userServiceInterface.createUser(user);
+    public ResponseEntity<?> addUser(@RequestBody User user) {
+        return new ResponseEntity<>(userServiceInterface.createUser(user), HttpStatus.OK);
     }
 
     /**
@@ -60,8 +61,8 @@ public class UserController {
      * @param id - id юзера
      */
     @DeleteMapping(value = "/{id}/")
-    public boolean deleteUser(@PathVariable(name = "id") int id) {
-        return userServiceInterface.deleteUserByID(id);
+    public ResponseEntity<?> deleteUser(@PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(userServiceInterface.deleteUserByID(id), HttpStatus.OK);
     }
 
     /**
@@ -72,8 +73,8 @@ public class UserController {
      * @param user - юзер с новыми полями
      */
     @PutMapping(value = "/{id}/")
-    public boolean updateUser(@RequestBody User user, @PathVariable(name = "id") int id) {
-        return userServiceInterface.updateUser(id, user);
+    public ResponseEntity<?> updateUser(@RequestBody User user, @PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(userServiceInterface.updateUser(id, user), HttpStatus.OK);
     }
 
 }

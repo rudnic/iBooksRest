@@ -27,10 +27,12 @@ public class BookServiceImpl implements BookServiceInterface {
 
     @Override
     public boolean createBook(Book book, List<Integer> authorsId) {
+        //System.out.println("Тут ошибка");
+        System.out.println(authorsId.get(0));
         Set<Author> authors = new HashSet<>(authorRepository.findAllById(authorsId));
         book.setAuthors(authors);
-        bookRepository.save(book);
 
+        bookRepository.save(book);
         for (Author author : authors) {
             Set<Book> authorBooks = author.getBooks();
             authorBooks.add(book);
@@ -50,14 +52,11 @@ public class BookServiceImpl implements BookServiceInterface {
         return bookRepository.findById(id).get();
     }
 
-    @Override
-    public boolean updateBookById(int id) {
-        return false;
-    }
 
     @Override
     public boolean deleteBookById(int id) {
-        return false;
+        bookRepository.deleteById(id);
+        return true;
     }
 
     @Override

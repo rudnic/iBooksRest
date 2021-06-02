@@ -24,8 +24,8 @@ public class BookController {
     }
 
     @GetMapping("/")
-    public List<Book> getAllBooks() {
-        return bookServiceInterface.getAllBooks();
+    public ResponseEntity<?> getAllBooks() {
+        return new ResponseEntity<>(bookServiceInterface.getAllBooks(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}/")
@@ -43,6 +43,7 @@ public class BookController {
         book.setCategory(bwlaiDTO.getCategory());
         book.setAnnotation(bwlaiDTO.getAnnotation());
         book.setAverageRating(bwlaiDTO.getAverageRating());
+        System.out.println(book.toString());
         bookServiceInterface.createBook(book, bwlaiDTO.getAuthorsId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -55,6 +56,11 @@ public class BookController {
     @GetMapping("/{id}/comments/")
     public ResponseEntity<?> showComments(@PathVariable(name = "id") int id) {
         return new ResponseEntity<>(bookServiceInterface.showComments(id), HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}/")
+    public ResponseEntity<?> deleteBook(@PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(bookServiceInterface.deleteBookById(id), HttpStatus.OK);
     }
 
 }

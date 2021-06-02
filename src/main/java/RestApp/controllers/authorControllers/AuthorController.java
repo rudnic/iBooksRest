@@ -39,12 +39,12 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}/books/")
-    public Set<Book> getAuthorsBooks(@PathVariable(name = "id") int id) {
-        return authorServiceInterface.getAuthorsBooks(id);
+    public ResponseEntity<?> getAuthorsBooks(@PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(authorServiceInterface.getAuthorsBooks(id), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}/")
-    public boolean deleteAuthorById(@PathVariable(name = "id") int id) {
-        return authorServiceInterface.deleteAuthorById(id);
+    public ResponseEntity<?> deleteAuthorById(@PathVariable(name = "id") int id) {
+        return new ResponseEntity<>(authorServiceInterface.deleteAuthorById(id), HttpStatus.OK);
     }
 }

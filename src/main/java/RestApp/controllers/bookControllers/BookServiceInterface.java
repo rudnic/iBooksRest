@@ -14,8 +14,6 @@ public interface BookServiceInterface {
 
     Book getBookById(int id);
 
-    boolean updateBookById(int id);
-
     boolean deleteBookById(int id);
 
     boolean addComment(int id, BookComment bookComment);

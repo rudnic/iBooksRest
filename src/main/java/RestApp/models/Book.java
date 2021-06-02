@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -97,4 +96,5 @@ public class Book {
     public void setBookComments(Set<BookComment> bookComments) {
         this.bookComments = bookComments;
     }
+
 }
