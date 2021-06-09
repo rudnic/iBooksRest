@@ -24,9 +24,6 @@ public class Book {
     @Column(name = "category")
     private String category;
 
-//    @Column(name = "average_rating")
-//    private Float averageRating;
-
     @Column(name = "count_likes")
     private Integer countLikes;
 
@@ -73,14 +70,6 @@ public class Book {
     public void setCategory(String category) {
         this.category = category;
     }
-
-//    public Float getAverageRating() {
-//        return averageRating;
-//    }
-//
-//    public void setAverageRating(Float averageRating) {
-//        this.averageRating = averageRating;
-//    }
 
     public Integer getCountLikes() {
         return countLikes;

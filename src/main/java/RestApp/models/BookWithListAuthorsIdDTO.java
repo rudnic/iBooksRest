@@ -6,7 +6,6 @@ public class BookWithListAuthorsIdDTO {
     private String name;
     private String annotation;
     private String category;
-    //private Float averageRating;
     private List<Integer> authorsId;
 
     public String getName() {
@@ -32,14 +31,6 @@ public class BookWithListAuthorsIdDTO {
     public void setCategory(String category) {
         this.category = category;
     }
-
-//    public Float getAverageRating() {
-//        return averageRating;
-//    }
-//
-//    public void setAverageRating(Float averageRating) {
-//        this.averageRating = averageRating;
-//    }
 
     public List<Integer> getAuthorsId() {
         return authorsId;

@@ -19,4 +19,7 @@
 Сущность Book:
 - GET /books/ - получить список всех книг
 - GET /books/{id}/ - получить книгу по её ID
-- 
+- POST /books/ - добавить новую книгу ( {"name": "Герой нашего времени", "category": "Роман", "authorsId": [1]"} )
+- POST /books/{id}/comments/ - добавить комментарий к книге ( {"commentText": "This is comment", "user": {"id": 1}"} )
+- GET /books/{id}/comments/ - посмотреть комментарии
+- DELETE /books/{id}/ - удалить книгу по id
