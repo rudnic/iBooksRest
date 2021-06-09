@@ -27,8 +27,6 @@ public class BookServiceImpl implements BookServiceInterface {
 
     @Override
     public boolean createBook(Book book, List<Integer> authorsId) {
-        //System.out.println("Тут ошибка");
-        System.out.println(authorsId.get(0));
         Set<Author> authors = new HashSet<>(authorRepository.findAllById(authorsId));
         book.setAuthors(authors);
 

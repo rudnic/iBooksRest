@@ -31,8 +31,6 @@ public class Book {
     private final Integer countLikes = 0;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
-    @JsonIgnoreProperties(value = { "authors" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
-    @JsonBackReference
     private Set<Author> authors;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
