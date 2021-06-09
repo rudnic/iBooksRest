@@ -10,20 +10,20 @@ import javax.persistence.*;
 public class BookComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idcomment")
+    @Column(name = "id_comment")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "bookId")
+    @JoinColumn(name = "book_id")
     @JsonIgnoreProperties(value = { "book" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
     @JsonBackReference
     private Book book;
 
-
+    @Column(name = "comment_text")
     private String commentText;
 
      @ManyToOne
-     @JoinColumn(name = "userId")
+     @JoinColumn(name = "user_id")
      private User user;
 
 

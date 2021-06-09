@@ -11,22 +11,22 @@ import java.util.Set;
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idauthors")
+    @Column(name = "id_authors")
     private int id;
 
-    @Column(name = "authorFirstname")
+    @Column(name = "author_firstname")
     private String firstname;
 
-    @Column(name = "authorMiddlename")
+    @Column(name = "author_middlename")
     private String middlename;
 
-    @Column(name = "authorLastname")
+    @Column(name = "author_lastname")
     private String lastname;
 
     @ManyToMany
     @JoinTable(name = "AUTHORS_BOOKS",
-            joinColumns = @JoinColumn(name = "authorId", referencedColumnName = "idauthors"),
-            inverseJoinColumns = @JoinColumn(name = "bookId", referencedColumnName = "idbooks")
+            joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id_authors"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id_books")
     )
     @JsonIgnoreProperties(value = { "books" ,"hibernateLazyInitializer", "handler" }, allowSetters = true)
     @JsonBackReference

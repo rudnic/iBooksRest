@@ -12,10 +12,10 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idbooks")
+    @Column(name = "id_books")
     private int id;
 
-    @Column(name = "bookName")
+    @Column(name = "book_name")
     private String name;
 
     @Column(name = "annotation")
@@ -24,11 +24,14 @@ public class Book {
     @Column(name = "category")
     private String category;
 
-    @Column(name = "average_rating")
-    private String averageRating;
+//    @Column(name = "average_rating")
+//    private Float averageRating;
 
     @Column(name = "count_likes")
-    private final Integer countLikes = 0;
+    private Integer countLikes;
+
+    @Column(name = "count_dislikes")
+    private Integer countDislikes;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "books")
     private Set<Author> authors;
@@ -71,20 +74,36 @@ public class Book {
         this.category = category;
     }
 
+//    public Float getAverageRating() {
+//        return averageRating;
+//    }
+//
+//    public void setAverageRating(Float averageRating) {
+//        this.averageRating = averageRating;
+//    }
+
+    public Integer getCountLikes() {
+        return countLikes;
+    }
+
+    public void setCountLikes(Integer countLikes) {
+        this.countLikes = countLikes;
+    }
+
+    public Integer getCountDislikes() {
+        return countDislikes;
+    }
+
+    public void setCountDislikes(Integer countDislikes) {
+        this.countDislikes = countDislikes;
+    }
+
     public Set<Author> getAuthors() {
         return authors;
     }
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
-    }
-
-    public String getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(String averageRating) {
-        this.averageRating = averageRating;
     }
 
     public Set<BookComment> getBookComments() {
@@ -94,5 +113,4 @@ public class Book {
     public void setBookComments(Set<BookComment> bookComments) {
         this.bookComments = bookComments;
     }
-
 }

@@ -21,6 +21,7 @@ public class User {
     private String firstname;
     private String lastname;
     private String city;
+    @Column(name = "birth_day")
     private Calendar birthDay;
     @Enumerated(EnumType.STRING)
     private UserGender gender;

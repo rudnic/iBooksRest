@@ -42,8 +42,7 @@ public class BookController {
         book.setName(bwlaiDTO.getName());
         book.setCategory(bwlaiDTO.getCategory());
         book.setAnnotation(bwlaiDTO.getAnnotation());
-        book.setAverageRating(bwlaiDTO.getAverageRating());
-        System.out.println(book.toString());
+        //book.setAverageRating(bwlaiDTO.getAverageRating());
         bookServiceInterface.createBook(book, bwlaiDTO.getAuthorsId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
